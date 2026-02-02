@@ -1,0 +1,26 @@
+const form = document.getElementById("contactForm");
+const statusText = document.getElementById("status");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if (!name || !email || !message) {
+    statusText.style.color = "red";
+    statusText.textContent = "All fields are required.";
+    return;
+  }
+
+  if (!email.includes("@")) {
+    statusText.style.color = "red";
+    statusText.textContent = "Enter a valid email.";
+    return;
+  }
+
+  statusText.style.color = "lightgreen";
+  statusText.textContent = "Message sent successfully!";
+  form.reset();
+});
